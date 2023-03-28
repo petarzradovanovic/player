@@ -1,20 +1,21 @@
 package com.example.player;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 @Entity
 @Getter @Setter
-@Service
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Player {
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long gameId;//mozda da bude list
+    private Long gameId;
 }
 

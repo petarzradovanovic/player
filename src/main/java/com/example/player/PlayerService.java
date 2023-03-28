@@ -1,9 +1,15 @@
-import com.example.player.Player;
+package com.example.player;
+
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+@Service
 public class PlayerService {
 
+    @PersistenceContext
     private EntityManager em;
     @Transactional
     public int registerPlayer(Player player){

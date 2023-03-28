@@ -1,11 +1,10 @@
-import com.example.player.Player;
+package com.example.player;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/")
+
 public class PlayerController {
 
     @Autowired
