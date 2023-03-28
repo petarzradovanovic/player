@@ -12,13 +12,21 @@ public class PlayerService {
     @PersistenceContext
     private EntityManager em;
     @Transactional
-    public int registerPlayer(Player player){
+    public Long registerPlayer(Player player){
+        Player dbPlayer = null;
+        try{
+            dbPlayer = em.createQuery( "SELECT p FROM Player p"
+                            + " WHERE p.gameId = :game_id", Player.class)
+                    .setParameter("game_id", player.getGameId())
+                    .getSingleResult();
+        } catch(Exception e){e.printStackTrace();}
+        System.out.println(player.getGameId());
+        if(dbPlayer == null) {
+            em.persist(player);
+            return player.getId();
+        }
+        return dbPlayer.getId();
 
-        return em.createQuery("INSERT INTO Player p"
-                        + " VALUES (id, name, gameId)"
-                        + " WHERE p.id = :id", Player.class)
-                .setParameter("id", player.getId())
-                .executeUpdate();
     }
 
     @Transactional

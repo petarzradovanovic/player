@@ -14,7 +14,7 @@ public class PlayerController {
     public boolean home() {return true;}
 
     @PostMapping("/register")
-    public int registerPlayer(Player player){
+    public Long registerPlayer(@RequestBody Player player){
         return playerService.registerPlayer(player);
     }
 
