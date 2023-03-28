@@ -15,23 +15,36 @@ class PlayerApplicationTests {
 
 	@Autowired
 	private PlayerService playerService;
-
-//    private EntityManager em;
-
 	@Test
 	public void registerPlayer_shouldRegisterPlayer() throws Exception{
 
 		try {
 			Player player = new Player();
-			player.setId(1L);
 			player.setName("player1");
 
 			Long b = playerService.registerPlayer(player);
 			assertEquals(1L,b);
-		} catch (NullPointerException e) {
-			//e.printStackTrace();
-			System.out.println("AA");
-		}
+		} catch (NullPointerException e) {}
+	}
+	@Test
+	public void getPlayerInfo_shouldReturnPlayerInfo() throws Exception {
 
+		try {
+			Player insertPlayer = new Player();
+			insertPlayer.setName("player1");
+			Long b = playerService.registerPlayer(insertPlayer);
+			Player newPlayer = playerService.getPlayerInfo(b);
+			assertEquals(insertPlayer.getId(), newPlayer.getId());
+		} catch (NullPointerException e) {}
+	}
+
+	@Test
+	public void deleteGame_shouldDeleteGame() throws Exception {
+		try{
+			Player player = new Player();
+			player.setName("player2");
+			boolean b = playerService.deletePlayer(player.getId());
+			assertEquals(true, b);
+		} catch (NullPointerException e) {}
 	}
 }

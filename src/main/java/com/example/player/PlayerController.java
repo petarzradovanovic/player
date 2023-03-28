@@ -19,11 +19,10 @@ public class PlayerController {
     }
 
     @GetMapping("/player")
-    public Player getPlayerInfo(Player player){
-        return playerService.getPlayerInfo(player.getId());
+    public Player getPlayerInfo(Player player) throws Exception { return playerService.getPlayerInfo(player.getId());
     }
 
     @DeleteMapping("/player")
-    public boolean deletePlayer(Player player){return playerService.deletePlayer(player.getId());
+    public boolean deletePlayer(Player player) throws Exception {return playerService.deletePlayer(player.getId());
     }
 }
